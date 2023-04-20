@@ -1,17 +1,65 @@
 import 'package:flutter/material.dart';
+import '/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
 
+  Widget buildSectionTitle(BuildContext context, String text) {
+    return Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        child: Text(
+          text,
+          style: Theme.of(context).textTheme.titleLarge,
+        ));
+  }
+
+  //Widget buildSection(BuildContext context) {}
+
   @override
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context).settings.arguments as String;
+    final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
       appBar: AppBar(
-        title: Text('$mealId'),
+        title: Text('${selectedMeal.title}'),
       ),
-      body: Center(
-        child: Text('The meal - $mealId!'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                selectedMeal.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            buildSectionTitle(context, 'Ingredients'),
+            Container(
+              height: 300,
+              width: 200,
+              child: ListView.builder(
+                itemBuilder: (context, index) =>
+                    Card(child: Text(selectedMeal.ingredients[index])),
+                itemCount: selectedMeal.ingredients.length,
+              ),
+            ),
+            buildSectionTitle(context, 'Steps'),
+            Container(
+              height: 300,
+              width: 300,
+              child: ListView.builder(
+                itemBuilder: (context, index) => ListTile(
+                  leading: CircleAvatar(
+                    child: Text('${(index + 1)}'),
+                  ),
+                  title: Text(selectedMeal.steps[index]),
+                ),
+                itemCount: selectedMeal.steps.length,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
