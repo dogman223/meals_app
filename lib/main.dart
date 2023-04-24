@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import './category_meals_screen.dart';
-import './categories_screen.dart';
+import 'screens/meal_detail_screen.dart';
+import 'screens/category_meals_screen.dart';
+import 'screens/categories_screen.dart';
+import 'screens/tabs_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,8 +20,12 @@ class MyApp extends StatelessWidget {
                   TextStyle(fontSize: 24, fontFamily: 'RobotoCondensed'),
             ),
       ),
-      home: CategoriesScreen(),
-      routes: {'/categories-meals': (context) => CategoryMealsScreen()},
+      //Passing data with Named Routes:
+      routes: {
+        '/': (context) => TabsScreen(),
+        CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (context) => MealDetailScreen()
+      },
     );
   }
 }
