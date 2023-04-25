@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
+import '/main_drawer.dart';
 import './favourites_screen.dart';
 import './categories_screen.dart';
 
-class TabsScreen extends StatefulWidget {
-  @override
-  State<TabsScreen> createState() => _TabsScreenState();
-}
-
-class _TabsScreenState extends State<TabsScreen> {
+class TabsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,6 +25,7 @@ class _TabsScreenState extends State<TabsScreen> {
               ],
             ),
           ),
+          drawer: MainDrawer(),
           body: TabBarView(
             children: [CategoriesScreen(), FavouritesScreen()],
           ),
