@@ -13,7 +13,15 @@ class MealDetailScreen extends StatelessWidget {
         ));
   }
 
-  //Widget buildSection(BuildContext context) {}
+  Widget buildSection(Widget child) {
+    return Container(
+      height: 150,
+      width: 300,
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(10),
+      child: child,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +43,16 @@ class MealDetailScreen extends StatelessWidget {
               ),
             ),
             buildSectionTitle(context, 'Ingredients'),
-            Container(
-              height: 300,
-              width: 200,
-              child: ListView.builder(
+            buildSection(
+              ListView.builder(
                 itemBuilder: (context, index) =>
                     Card(child: Text(selectedMeal.ingredients[index])),
                 itemCount: selectedMeal.ingredients.length,
               ),
             ),
             buildSectionTitle(context, 'Steps'),
-            Container(
-              height: 300,
-              width: 300,
-              child: ListView.builder(
+            buildSection(
+              ListView.builder(
                 itemBuilder: (context, index) => ListTile(
                   leading: CircleAvatar(
                     child: Text('${(index + 1)}'),
@@ -60,6 +64,12 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
       ),
     );
   }
