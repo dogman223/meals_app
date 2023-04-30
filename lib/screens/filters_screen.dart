@@ -14,6 +14,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _vegan = false;
   bool _lactoseFree = false;
 
+  //Method adds switch of each filter:
   Widget _buildSwitchListTile(String title, String description,
       bool currentValue, Function updateValue) {
     return SwitchListTile(

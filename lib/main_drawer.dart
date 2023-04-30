@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Method adds functionality to the Draw; choice with: list of filters or back to 'meals main menu'.
 Widget buildListTile(String title, IconData iconData, Function onTapHandler) {
   return ListTile(
     leading: Icon(iconData, size: 26),

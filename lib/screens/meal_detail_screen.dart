@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '/dummy_data.dart';
 
+//Screen of meal, that give us info about meal:
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
 
+  //Method builds title of section.
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 10),
@@ -13,6 +15,7 @@ class MealDetailScreen extends StatelessWidget {
         ));
   }
 
+  //Method builds section with info about meal(ingredients etc.)
   Widget buildSection(Widget child) {
     return Container(
       height: 150,
